@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -10,19 +12,36 @@ const AddProduct = () => {
     const image_url = form.image_url.value;
     const data = { id, title, brand, price, description, image_url };
 
-    await fetch("http://localhost:3000/shoes", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        form.reset();
-      })
-      .catch((error) => console.log(error));
+    Swal.fire({
+      title: "Are you sure to add these data?",
+      text: "Please ensure you are providing valid data",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, add it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await fetch("http://localhost:3000/shoes", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify(data)
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            form.reset();
+          })
+          .catch((error) => console.log(error));
+        Swal.fire({
+          title: "Added Successfully!",
+          text: "Your file has been Added.",
+          icon: "success"
+        });
+      }
+    });
   };
   return (
     <div className="w-full">

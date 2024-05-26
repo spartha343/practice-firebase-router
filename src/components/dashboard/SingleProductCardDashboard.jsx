@@ -1,20 +1,39 @@
 /* eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SingleProductCardDashboard = ({ shoe, onDelete }) => {
   const { title, description, id, brand, price, image_url } = shoe;
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:3000/shoes/${id}`, {
-      method: "DELETE"
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        onDelete(id);
-      })
-      .catch((error) => console.log(error));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await fetch(`http://localhost:3000/shoes/${id}`, {
+          method: "DELETE"
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            onDelete(id);
+          })
+          .catch((error) => console.log(error));
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
   };
   return (
     <div className="card glass">

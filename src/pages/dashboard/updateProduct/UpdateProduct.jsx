@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
   const shoe = useLoaderData();
@@ -21,19 +22,36 @@ const UpdateProduct = () => {
     const image_url = form.image_url.value;
     const data = { id, title, brand, price, description, image_url };
 
-    await fetch(`http://localhost:3000/shoes/${shoe.id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        form.reset();
-      })
-      .catch((error) => console.log(error));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You are destroying previous data. So check again if you are not sure",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, update it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await fetch(`http://localhost:3000/shoes/${shoe.id}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify(data)
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            form.reset();
+          })
+          .catch((error) => console.log(error));
+        Swal.fire({
+          title: "Updated!",
+          text: "Your file has been updated.",
+          icon: "success"
+        });
+      }
+    });
   };
   return (
     <div className="w-full">
