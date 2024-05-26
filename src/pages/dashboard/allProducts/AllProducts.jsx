@@ -1,15 +1,23 @@
 import { useLoaderData } from "react-router-dom";
-import SingleProduct from "../../../components/SingleProduct";
+import SingleProductCardDashboard from "../../../components/dashboard/SingleProductCardDashboard";
+import { useState } from "react";
 
 const AllProducts = () => {
-  const shoes = useLoaderData();
+  const [shoes, setShoes] = useState(useLoaderData());
+  const handleDeleteProduct = (id) => {
+    setShoes(shoes.filter((shoe) => shoe.id !== id));
+  };
   return (
     <div className="mb-10">
       <h2 className="text-2xl text-center my-8">All Products</h2>
 
       <div className="grid grid-cols-3 gap-8 mx-5">
         {shoes?.map((shoe) => (
-          <SingleProduct key={shoe.id} shoe={shoe} />
+          <SingleProductCardDashboard
+            key={shoe.id}
+            shoe={shoe}
+            onDelete={handleDeleteProduct}
+          />
         ))}
       </div>
     </div>

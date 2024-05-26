@@ -1,4 +1,15 @@
-const AddProduct = () => {
+import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
+
+const UpdateProduct = () => {
+  const shoe = useLoaderData();
+
+  const [title, setTitle] = useState(shoe.title);
+  const [description, setDescription] = useState(shoe.description);
+  const [brand, setBrand] = useState(shoe.brand);
+  const [price, setPrice] = useState(shoe.price);
+  const [image_url, setImageUrl] = useState(shoe.image_url);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -10,8 +21,8 @@ const AddProduct = () => {
     const image_url = form.image_url.value;
     const data = { id, title, brand, price, description, image_url };
 
-    await fetch("http://localhost:3000/shoes", {
-      method: "POST",
+    await fetch(`http://localhost:3000/shoes/${shoe.id}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json"
       },
@@ -26,7 +37,7 @@ const AddProduct = () => {
   };
   return (
     <div className="w-full">
-      <h2 className="text-2xl text-center my-8">Add Product</h2>
+      <h2 className="text-2xl text-center my-8">Update Product</h2>
       <div className="hero min-h-screen px-10 my-10">
         <div className="card shrink-0 w-full max-w-3xl shadow-2xl bg-base-100">
           <form onSubmit={handleSubmit} className="card-body">
@@ -37,6 +48,8 @@ const AddProduct = () => {
               <input
                 name="title"
                 type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 placeholder="Title"
                 className="input input-bordered"
                 required
@@ -49,6 +62,8 @@ const AddProduct = () => {
               <input
                 name="brand"
                 type="text"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
                 placeholder="Brand"
                 className="input input-bordered"
                 required
@@ -61,6 +76,8 @@ const AddProduct = () => {
               <input
                 name="price"
                 type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
                 placeholder="Price"
                 className="input input-bordered"
                 required
@@ -72,7 +89,8 @@ const AddProduct = () => {
               </label>
               <textarea
                 name="description"
-                id=""
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
                 className="input input-bordered"
                 required
@@ -85,6 +103,8 @@ const AddProduct = () => {
               <input
                 name="image_url"
                 type="text"
+                value={image_url}
+                onChange={(e) => setImageUrl(e.target.value)}
                 placeholder="Image URL"
                 className="input input-bordered"
                 required
@@ -97,15 +117,16 @@ const AddProduct = () => {
               <input
                 name="id"
                 type="number"
+                value={shoe.id}
                 placeholder="ID"
                 className="input input-bordered"
-                required
+                readOnly
               />
             </div>
             <div className="form-control mt-6">
               <input
                 type="submit"
-                value="Add Product"
+                value="Update Product"
                 className="btn btn-primary"
               ></input>
             </div>
@@ -116,4 +137,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;
