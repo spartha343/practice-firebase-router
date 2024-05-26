@@ -10,6 +10,7 @@ import ProductDetails from "../pages/productDetails/ProductDetails";
 import AllProducts from "../pages/dashboard/allProducts/AllProducts";
 import AddProduct from "../pages/dashboard/addProduct/AddProduct";
 import UpdateProduct from "../pages/dashboard/updateProduct/UpdateProduct";
+import DashboardHome from "../pages/dashboard/dashboardHome/DashboardHome";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <DashboardHome />
+      },
+      {
+        path: "all-products",
         element: <AllProducts />,
         loader: () => fetch("http://localhost:3000/shoes")
       },

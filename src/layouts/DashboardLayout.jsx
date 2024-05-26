@@ -25,7 +25,10 @@ const DashboardLayout = () => {
             {/* Sidebar content here */}
             <div>
               <li>
-                <Link to="/dashboard">All Products</Link>
+                <Link to="/dashboard">Dashboard Home</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/all-products">All Products</Link>
               </li>
               <li>
                 <Link to="/dashboard/add-product">Add Product</Link>
