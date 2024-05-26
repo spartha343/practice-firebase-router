@@ -1,0 +1,44 @@
+{
+  "shoes": [
+    {
+      "id": 1,
+      "title": "Air Max 270",
+      "brand": "Nike",
+      "price": 150.0,
+      "description": "The Nike Air Max 270 is inspired by two icons of big Air: the Air Max 180 and Air Max 93. It features Nike's biggest heel Air unit yet for a super-soft ride.",
+      "image_url": "https://png.pngtree.com/background/20230526/original/pngtree-some-sneakers-with-neon-lights-in-front-picture-image_2752549.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Ultraboost 21",
+      "brand": "Adidas",
+      "price": 180.0,
+      "description": "The Adidas Ultraboost 21 is a running shoe that delivers comfort and responsiveness. It features a Boost midsole and a Primeknit upper for a snug, supportive fit.",
+      "image_url": "https://img.freepik.com/premium-photo/white-sneaker-sport-shoe-purple-gradient-background_906149-17475.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Gel-Kayano 27",
+      "brand": "ASICS",
+      "price": 160.0,
+      "description": "The ASICS Gel-Kayano 27 offers excellent stability and support for overpronators. It features a Dynamic Duomax support system and a FlyteFoam midsole.",
+      "image_url": "https://static.vecteezy.com/system/resources/thumbnails/034/334/352/small_2x/closeup-of-runners-shoe-mid-stride-isolated-on-a-gradient-background-photo.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Classic Leather",
+      "brand": "Reebok",
+      "price": 75.0,
+      "description": "The Reebok Classic Leather is a timeless sneaker that offers comfort and style. It features a leather upper, EVA midsole, and a durable rubber outsole.",
+      "image_url": "https://png.pngtree.com/thumb_back/fw800/background/20230722/pngtree-gradient-backdrop-showcases-3d-rendering-of-multi-hued-shoe-image_3780829.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Chuck Taylor All Star",
+      "brand": "Converse",
+      "price": 55.0,
+      "description": "The Converse Chuck Taylor All Star is a classic canvas sneaker with a rubber toe cap and a vulcanized rubber sole. It's an iconic shoe known for its versatility and style.",
+      "image_url": "https://img.freepik.com/premium-photo/white-sneaker-sport-shoe-purple-gradient-background_906149-17472.jpg"
+    }
+  ]
+}
