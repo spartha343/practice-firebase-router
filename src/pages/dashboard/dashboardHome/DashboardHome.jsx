@@ -7,7 +7,7 @@ const DashboardHome = () => {
   return (
     <div>
       <div className="avatar">
-        <div className="min-w-48 mask mask-hexagon">
+        <div className="w-56 mask mask-hexagon">
           <img
             src={
               photoURL ||
@@ -17,7 +17,7 @@ const DashboardHome = () => {
         </div>
       </div>
 
-      <h3 className="text-xl">Name: {displayName}</h3>
+      <h3 className="text-xl">Name: {displayName || "John Doe"}</h3>
       <h3 className="text-xl">Email: {email}</h3>
     </div>
   );

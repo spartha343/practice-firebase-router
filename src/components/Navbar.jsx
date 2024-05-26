@@ -72,9 +72,14 @@ const Navbar = () => {
             Sign Out
           </button>
         ) : (
-          <Link to="/signup" className="btn">
-            Sign Up
-          </Link>
+          <div>
+            <Link to="/signup" className="btn mr-3">
+              Sign Up
+            </Link>
+            <Link to="/signin" className="btn">
+              Sign In
+            </Link>
+          </div>
         )}
       </div>
     </div>
