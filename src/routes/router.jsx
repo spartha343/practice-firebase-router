@@ -3,12 +3,12 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/home/Home";
 import About from "../pages/about/About";
 import DashboardLayout from "../layouts/DashboardLayout";
-import Page2 from "../pages/dashboard/page2/Page2";
 import SIgnUp from "../pages/authentication/signUp/SIgnUp";
 import SignIn from "../pages/authentication/signIn/SignIn";
 import ProtectedRoute from "./protectedRoutes/ProtectedRoute";
 import ProductDetails from "../pages/productDetails/ProductDetails";
 import AllProducts from "../pages/dashboard/allProducts/AllProducts";
+import AddProduct from "../pages/dashboard/addProduct/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -54,8 +54,8 @@ const router = createBrowserRouter([
         loader: () => fetch("http://localhost:3000/shoes")
       },
       {
-        path: "page2",
-        element: <Page2 />
+        path: "add-product",
+        element: <AddProduct />
       }
     ]
   }
