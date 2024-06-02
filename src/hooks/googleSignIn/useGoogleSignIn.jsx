@@ -1,7 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuthInfo from "../authInfo/useAuthInfo";
+import useStoreUserToDB from "../storeUserToDB/useStoreUserToDB";
 
 const useGoogleSignIn = () => {
+  const storeUserInDB = useStoreUserToDB();
   const { signInWithGoogle } = useAuthInfo();
   let navigate = useNavigate();
   let location = useLocation();
@@ -9,8 +11,9 @@ const useGoogleSignIn = () => {
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
-      .then(() => {
+      .then((result) => {
         navigate(from, { replace: true });
+        storeUserInDB(result.user);
       })
       .catch((error) => {
         // Handle Errors here.

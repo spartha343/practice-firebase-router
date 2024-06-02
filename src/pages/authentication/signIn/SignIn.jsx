@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import useGoogleSignIn from "../../../hooks/googleSignIn/useGoogleSignIn";
 import useAuthInfo from "../../../hooks/authInfo/useAuthInfo";
+import useStoreUserToDB from "../../../hooks/storeUserToDB/useStoreUserToDB";
 
 const SignIn = () => {
   const googleSignIn = useGoogleSignIn();
+  const storeUserInDB = useStoreUserToDB();
   const { signInWithEmailAndPass } = useAuthInfo();
   const handleSignInUsingEmailAndPass = (e) => {
     e.preventDefault();
@@ -11,7 +13,9 @@ const SignIn = () => {
     const email = form.email.value;
     const password = form.password.value;
     signInWithEmailAndPass(email, password)
-      .then((result) => console.log(result.user))
+      .then((result) => {
+        storeUserInDB(result.user);
+      })
       .catch((error) => console.log(error));
   };
   return (
