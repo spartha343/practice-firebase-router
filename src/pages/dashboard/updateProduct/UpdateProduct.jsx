@@ -14,13 +14,12 @@ const UpdateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const id = form.id.value;
     const title = form.title.value;
     const brand = form.brand.value;
     const price = form.price.value;
     const description = form.description.value;
     const image_url = form.image_url.value;
-    const data = { id, title, brand, price, description, image_url };
+    const data = { title, brand, price, description, image_url };
 
     Swal.fire({
       title: "Are you sure?",
@@ -32,7 +31,7 @@ const UpdateProduct = () => {
       confirmButtonText: "Yes, update it!"
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await fetch(`http://localhost:3000/shoes/${shoe.id}`, {
+        await fetch(`http://localhost:3000/shoes/${shoe._id}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json"
@@ -42,14 +41,14 @@ const UpdateProduct = () => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
+            Swal.fire({
+              title: "Updated!",
+              text: "Your file has been updated.",
+              icon: "success"
+            });
             form.reset();
           })
           .catch((error) => console.log(error));
-        Swal.fire({
-          title: "Updated!",
-          text: "Your file has been updated.",
-          icon: "success"
-        });
       }
     });
   };
@@ -126,19 +125,6 @@ const UpdateProduct = () => {
                 placeholder="Image URL"
                 className="input input-bordered"
                 required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">ID</span>
-              </label>
-              <input
-                name="id"
-                type="number"
-                value={shoe.id}
-                placeholder="ID"
-                className="input input-bordered"
-                readOnly
               />
             </div>
             <div className="form-control mt-6">

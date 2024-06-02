@@ -5,7 +5,7 @@ import { useState } from "react";
 const AllProducts = () => {
   const [shoes, setShoes] = useState(useLoaderData());
   const handleDeleteProduct = (id) => {
-    setShoes(shoes.filter((shoe) => shoe.id !== id));
+    setShoes(shoes.filter((shoe) => shoe._id !== id));
   };
   return (
     <div className="mb-10">
@@ -14,7 +14,7 @@ const AllProducts = () => {
       <div className="grid grid-cols-3 gap-8 mx-5">
         {shoes?.map((shoe) => (
           <SingleProductCardDashboard
-            key={shoe.id}
+            key={shoe._id}
             shoe={shoe}
             onDelete={handleDeleteProduct}
           />

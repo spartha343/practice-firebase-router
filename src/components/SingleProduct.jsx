@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const SingleProduct = ({ shoe }) => {
-  const { title, description, id, brand, price, image_url } = shoe;
+  const { title, description, _id, brand, price, image_url } = shoe;
   return (
     <div className="card glass">
       <figure className="h-52">
@@ -20,7 +20,7 @@ const SingleProduct = ({ shoe }) => {
             : description}
         </p>
         <div className="card-actions justify-end">
-          <Link to={`/products/${id}`}>
+          <Link to={`/products/${_id}`}>
             <button className="btn btn-primary">See Details!</button>
           </Link>
         </div>

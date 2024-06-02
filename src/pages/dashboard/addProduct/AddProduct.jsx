@@ -4,13 +4,12 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const id = form.id.value;
     const title = form.title.value;
     const brand = form.brand.value;
     const price = form.price.value;
     const description = form.description.value;
     const image_url = form.image_url.value;
-    const data = { id, title, brand, price, description, image_url };
+    const data = { title, brand, price, description, image_url };
 
     Swal.fire({
       title: "Are you sure to add these data?",
@@ -30,16 +29,16 @@ const AddProduct = () => {
           body: JSON.stringify(data)
         })
           .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
+          .then(() => {
+            Swal.fire({
+              title: "Added Successfully!",
+              text: "Your file has been Added.",
+              icon: "success"
+            });
+
             form.reset();
           })
           .catch((error) => console.log(error));
-        Swal.fire({
-          title: "Added Successfully!",
-          text: "Your file has been Added.",
-          icon: "success"
-        });
       }
     });
   };
@@ -105,18 +104,6 @@ const AddProduct = () => {
                 name="image_url"
                 type="text"
                 placeholder="Image URL"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">ID</span>
-              </label>
-              <input
-                name="id"
-                type="number"
-                placeholder="ID"
                 className="input input-bordered"
                 required
               />

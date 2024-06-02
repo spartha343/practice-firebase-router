@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SingleProductCardDashboard = ({ shoe, onDelete }) => {
-  const { title, description, id, brand, price, image_url } = shoe;
+  const { title, description, _id, brand, price, image_url } = shoe;
 
   const handleDelete = async () => {
     Swal.fire({
@@ -17,21 +17,20 @@ const SingleProductCardDashboard = ({ shoe, onDelete }) => {
       confirmButtonText: "Yes, delete it!"
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await fetch(`http://localhost:3000/shoes/${id}`, {
+        await fetch(`http://localhost:3000/shoes/${_id}`, {
           method: "DELETE"
         })
           .then((res) => res.json())
           .then((data) => {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
             console.log(data);
-            onDelete(id);
+            onDelete(_id);
           })
           .catch((error) => console.log(error));
-
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
       }
     });
   };
@@ -50,10 +49,10 @@ const SingleProductCardDashboard = ({ shoe, onDelete }) => {
             : description}
         </p>
         <div className="card-actions justify-end">
-          <Link to={`/products/${id}`}>
+          <Link to={`/products/${_id}`}>
             <button className="btn btn-sm btn-primary">See Details!</button>
           </Link>
-          <Link to={`/dashboard/update-product/${id}`}>
+          <Link to={`/dashboard/update-product/${_id}`}>
             <button className="btn btn-sm btn-secondary">Update!</button>
           </Link>
           <button onClick={handleDelete} className="btn btn-sm btn-error">
